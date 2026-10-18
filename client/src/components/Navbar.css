@@ -1,0 +1,67 @@
+/* Mobile layout: stack columns below 760px */
+.site-header {
+    align-items: center;
+    background: #102a43;
+    color: #f7fbff;
+    display: flex;
+    justify-content: space-between;
+    padding: 18px clamp(20px, 6vw, 88px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.brand {
+    align-items: center;
+    color: inherit;
+    display: flex;
+    font-family: Georgia, serif;
+    font-size: 1.25rem;
+    font-weight: 700;
+    gap: 10px;
+    text-decoration: none;
+}
+
+.brand-mark {
+    align-items: center;
+    background: #f2b880;
+    border-radius: 50%;
+    color: #102a43;
+    display: inline-flex;
+    font-family: Arial, sans-serif;
+    font-size: .75rem;
+    height: 36px;
+    justify-content: center;
+    width: 36px;
+}
+
+.navbar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    justify-content: flex-end;
+}
+
+.navbar a {
+    color: #d9e5ef;
+    font-size: .9rem;
+    text-decoration: none;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: #f2b880;
+}
+
+@media (max-width: 760px) {
+    .site-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .navbar {
+        gap: 14px 18px;
+        justify-content: flex-start;
+    }
+}

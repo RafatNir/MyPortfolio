@@ -1,11 +1,10 @@
 node_modules/
 client/node_modules/
 
-.env
-
+client/build/
 build/
-dist/
 
+.env
 .vscode/
-
 .history/
+dist/
