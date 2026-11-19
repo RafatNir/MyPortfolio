@@ -25,21 +25,23 @@ export default function Contact() {
   async function handleSubmit(event) {
   event.preventDefault();
 
+  console.log(process.env.REACT_APP_API_URL);
+
   try {
     const response = await fetch(
-      "http://localhost:3000/api/contacts",
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          firstname: formData.firstName,
-          lastname: formData.lastName,
-          email: formData.email,
-        }),
-      }
-    );
+  "http://localhost:3000/api/contacts",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      firstname: formData.firstName,
+      lastname: formData.lastName,
+      email: formData.email,
+    }),
+  }
+);
 
     const data = await response.json();
 

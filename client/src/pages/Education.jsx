@@ -4,7 +4,7 @@ export default function Education() {
   const [qualifications, setQualifications] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/qualifications")
+   fetch("http://localhost:3000/api/qualifications")
       .then((res) => res.json())
       .then((data) => setQualifications(data))
       .catch((err) => console.error(err));
