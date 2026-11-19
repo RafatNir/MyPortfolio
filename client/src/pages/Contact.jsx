@@ -22,11 +22,34 @@ export default function Contact() {
   }
 
   // Captures the submitted data, then redirects the user to the Home page
-  function handleSubmit(event) {
-    event.preventDefault();
-    console.log("Contact form submitted:", formData);
+  async function handleSubmit(event) {
+  event.preventDefault();
+
+  try {
+    const response = await fetch(
+      "http://localhost:3000/api/contacts",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstname: formData.firstName,
+          lastname: formData.lastName,
+          email: formData.email,
+        }),
+      }
+    );
+
+    const data = await response.json();
+
+    console.log("Saved:", data);
+
     navigate("/");
+  } catch (error) {
+    console.error("Error saving contact:", error);
   }
+}
 
   return (
     <section className="page-shell contact-grid">

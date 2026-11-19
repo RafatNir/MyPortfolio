@@ -1,52 +1,64 @@
-// Each entry: credential obtained, institution, year(s), and an optional note.
-// Listed with the most recent first.
-const educationHistory = [
-  {
-    credential: "Software Engineering Technology (Advanced Diploma)",
-    institution: "Centennial College",
-    dates: "2025 - Present (in progress)",
-    details:
-      "Coursework includes web application development, programming, databases, systems analysis, and software testing.",
-  },
-  {
-    credential: "Master of Arts (MA), Media Production",
-    institution: "Toronto Metropolitan University",
-    dates: "2018",
-  },
-  {
-    credential: "Master of Business Administration (MBA), Marketing",
-    institution: "Atish Dipankar University of Science and Technology",
-    dates: "2013",
-  },
-  {
-    credential: "Bachelor of Business Administration (BBA), Marketing",
-    institution: "Atish Dipankar University of Science and Technology",
-    dates: "2011",
-  },
-];
+import { useEffect, useState } from "react";
 
-// Education: timeline of all educational qualifications, built from the list above
 export default function Education() {
+  const [qualifications, setQualifications] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/api/qualifications")
+      .then((res) => res.json())
+      .then((data) => setQualifications(data))
+      .catch((err) => console.error(err));
+  }, []);
+
   return (
     <section className="page-shell">
       <div className="section-heading">
         <p className="eyebrow">Education</p>
-        <h1>Learning with purpose.</h1>
+        <h1>Academic Qualifications</h1>
+
         <p className="lead">
-          A foundation in business, media, and software development, with a
-          current focus on web application design.
+          Qualifications loaded from MongoDB through the Express API.
         </p>
       </div>
 
-      <div className="timeline">
-        {educationHistory.map((entry) => (
-          <article className="timeline-item" key={entry.credential}>
-            <h3>{entry.credential}</h3>
-            <p>{entry.institution} · {entry.dates}</p>
-            {/* Only entries with extra detail show this line */}
-            {entry.details && <p>{entry.details}</p>}
-          </article>
-        ))}
+      <div className="card-grid">
+        {qualifications.length === 0 ? (
+          <p>No qualifications found.</p>
+        ) : (
+          qualifications.map((qualification) => (
+            <article
+              className="card"
+              key={qualification._id}
+            >
+              <h3>{qualification.title}</h3>
+
+              <p>
+                <strong>Owner:</strong>{" "}
+                {qualification.firstname}{" "}
+                {qualification.lastname}
+              </p>
+
+              <p>
+                <strong>Email:</strong>{" "}
+                {qualification.email}
+              </p>
+
+              <p>
+                <strong>Description:</strong>{" "}
+                {qualification.description}
+              </p>
+
+              <p>
+                <strong>Completion Date:</strong>{" "}
+                {qualification.completion
+                  ? new Date(
+                      qualification.completion
+                    ).toLocaleDateString()
+                  : "N/A"}
+              </p>
+            </article>
+          ))
+        )}
       </div>
     </section>
   );
