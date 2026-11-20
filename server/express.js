@@ -19,8 +19,10 @@ app.use(
     origin: [
       "http://localhost:3001",
       "http://localhost:3002",
-      "https://marvelous-gaufre-d00b69.netlify.app"
-    ]
+      "https://marvelous-gaufre-d00b69.netlify.app",
+      "https://myportfoliorafat.netlify.app"
+    ],
+    credentials: true
   })
 );
 
