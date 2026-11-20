@@ -16,8 +16,11 @@ const app = express();
 // CORS 
 app.use(
   cors({
-    origin: "http://localhost:3001",
-    credentials: true,
+    origin: [
+      "http://localhost:3001",
+      "http://localhost:3002",
+      "https://marvelous-gaufre-d00b69.netlify.app"
+    ]
   })
 );
 

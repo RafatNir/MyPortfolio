@@ -25,11 +25,9 @@ export default function Contact() {
   async function handleSubmit(event) {
   event.preventDefault();
 
-  console.log(process.env.REACT_APP_API_URL);
-
   try {
     const response = await fetch(
-  "http://localhost:3000/api/contacts",
+  "https://myportfolio-kbj4.onrender.com/api/contacts",
   {
     method: "POST",
     headers: {
@@ -43,7 +41,9 @@ export default function Contact() {
   }
 );
 
-    const data = await response.json();
+console.log("Status:", response.status);
+    
+const data = await response.json();
 
     console.log("Saved:", data);
 

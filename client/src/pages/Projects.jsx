@@ -4,7 +4,7 @@ export default function Projects() {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/projects")
+    fetch("https://myportfolio-kbj4.onrender.com/api/projects")
       .then((res) => res.json())
       .then((data) => setProjects(data))
       .catch((err) => console.error(err));
